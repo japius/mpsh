@@ -1,0 +1,133 @@
+.TH CD 1
+.SH NOM
+CD \- change directory
+
+.SH SYNOPSIS
+\fBcd\fP [\fIdir\fP]
+
+.SH DESCRIPTION
+Change le répertoire courant à \fIdir\fP. Si aucun argument n'est donné, modifie le répertoire courant avec la variable HOME de Mpsh.
+
+
+.TH ALIAS 1
+.SH NOM
+ALIAS
+
+.SH SYNOPSIS
+\fBalias\fP [\fIname\fP=\fIvalue\fP] ...
+
+.SH DESCRIPTION
+Créé un alias pour chacun des arguements. Substitue \fIname\fP par \fIvalue\fP lorsque \fIname\fP est utilisé comme le nom d'une commande. Si alias n'a aucun arguments, alors affiche la liste des alias.
+
+
+.TH UNALIAS 1
+.SH NOM
+UNALIAS
+
+.SH SYNOPSIS
+\fBunalias\fP [\fIname\fP] ...
+
+.SH DESCRIPTION
+Supprime l'alias \fIname\fP. Si aucun argument n'est donné, supprime tous les alias.
+
+
+.TH EXIT 1
+.SH NOM
+EXIT
+
+.SH SYNOPSIS
+\fBexit\fP [\fIvalue\fP]
+
+.SH DESCRIPTION
+Quitte le mpsh en renvoyant comme valeur de retour la valeur \fIvalue\fP (0 par defaut).
+
+
+.TH HISTORY 1
+.SH NOM
+HISTORY
+
+.SH SYNOPSIS
+\fBhistory\fP [-][\fIn\fP]
+
+.SH DESCRIPTION
+Si il n'y a pas l'option - alors execute la commande \fIn\fP-ieme commande de l'historique, si elle est présente, l'historique ne garde plus que les \fIn\fP-ieme dernières lignes. Si il n'y a pas d'argument, alors affiche l'historique.
+
+
+.TH PWD 1
+.SH NOM
+PWD
+
+.SH SYNOPSIS
+\fBpwd\fP
+
+.SH DESCRIPTION
+Ecrit le répertoire courant.
+
+
+.TH TYPE 1
+.SH NOM
+TYPE
+
+.SH SYNOPSIS
+\fBtype\fP [\fIname\fP] ...
+
+.SH DESCRIPTION
+Pour chaque \fIname\fP, indique si il s'agit d'une commande interne, externe, ou d'un alias.
+
+
+.TH EXPORT 1
+.SH NOM
+EXPORT
+
+.SH SYNOPSIS
+\fBexport\fP [\fIname\fP] ...
+
+.SH DESCRIPTION
+Exporte chaque variable \fIname\fP en variable d'environnement.
+
+
+.TH UMASK 1
+.SH NOM
+UMASK
+
+.SH SYNOPSIS
+\fBumask\fP [OPTION]... [\fIval\fP]
+
+.SH DESCRIPTION
+Modifie le masque de mpsh. \fIval\fP peut être en mode octal ou sous la forme ugo(=|+|-)rwx.
+
+.SS Options
+
+.TP
+\fB-p\fP
+Ecrit le masque actuel sous forme octal.
+
+.TP
+\fB-S\fP
+Ecrit le masque actuel sous la forme r=rwx,g=rwx,o=rwx.
+
+
+
+.TH COMPLETE 1
+.SH NOM
+COMPLETE
+
+.SH SYNOPSIS
+\fBcomplete\fP \fIname\fP \fIexrpession\fP
+
+.SH DESCRIPTION
+Lors des prochaines utilisations de la commande \fIname\fP, la complétion automatique complétera avec les avec les fichiers suivant l'expression régulière \fIexpression\fP. Si \fIexpression\fP="directory" alors la complétion complétera uniquement avec les répertoires.
+
+
+.TH RMCOMPLETE 1
+.SH NOM
+RMCOMPLETE
+
+.SH SYNOPSIS
+\fBrmcomplete\fP \fIname\fP
+
+.SH DESCRIPTION
+Lors des prochaines utilisations de la commande \fIname\fP, la complétion automatique complétera avec les avec les fichiers sans tenir compte d'une expression régulière auparavant donné avec \fBcomplete\fP.
+
+
+
