@@ -58,41 +58,49 @@ int exec_line(cmdtree tree) {
 
 
 int exec_pipe(cmdtree left, cmdtree right) {
+  int fd[2],pid1,pid2,ret_value1,ret_value2;
   
-  int fd[2];
-  pipe(fd);
+  if (pipe(fd) != 0) {
+	  perror("Error with pipe"); 
+	  return EXIT_FAILURE;
+  }
 
-  if(fork() == 0)
+  if ((pid1 = fork()) == -1) {
+	  perror("Error with fork");
+	  return EXIT_FAILURE;
+  }
+
+  if(pid1 == 0)
 	{	  
 	  dup2(fd[1], 1);
 	  close(fd[0]);
-	  close(fd[1]);
 
 	  int left_status = exec_line(left);
-
 	  exit(left_status);
 	}
   
-  int pid = fork();
+  if ((pid2 = fork()) == -1) {
+	  perror("Error with fork");
+	  return EXIT_FAILURE;
+  }
 	  
-  if(pid == 0)
+  if(pid2 == 0)
 	{
 	  dup2(fd[0], 0);
-	  close(fd[0]);
 	  close(fd[1]);
-
-	  setvbuf(stdout, NULL, _IOLBF, 1024);
 	  
 	  int right_status = exec_line(right);
 		
 	  exit(right_status);
 	}
-	  
-  int ret_value;
+  
+  close(fd[1]);
+  close(fd[0]);
 
-  waitpid(pid, &ret_value,WUNTRACED); //DERNIER FLAG A VERIFIER
+  waitpid(pid2, &ret_value2,WUNTRACED);
+  waitpid(pid1, &ret_value1,WUNTRACED);
 		  
-  return ret_value;
+  return ret_value2;  
 }
 
   
