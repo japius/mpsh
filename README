@@ -1,5 +1,8 @@
 MPSH
 
+Installer libreadline-dev "sudo apt install libreadline-dev"
+Installer lncurse-dev "sudo apt-get install libncurses5-dev"
+
 Pour compiler le projet, il suffit de lancer la commande 'make'.
 Nous avons inclus les fichiers générés par bison et lex, mais pour les recompiler, on peut utiliser 'make yacclex'.
 
